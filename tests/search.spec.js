@@ -4,14 +4,14 @@ import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import sinonStubPromise from 'sinon-stub-promise';
 
-import { search, searchAlbums, searchArtists, searchTracks, searchPlaylists } from '../src/main';
+import { search, searchAlbums, searchArtists, searchTracks, searchPlaylists } from '../src/search';
 
 chai.use(sinonChai);
 sinonStubPromise(sinon);
 
 global.fetch = require('node-fetch');
 
-describe('Spotify Wrapper', () => {
+describe('Search', () => {
   let fetchedStub;
   let promise;
 
@@ -73,7 +73,6 @@ describe('Spotify Wrapper', () => {
     it('should return the JSON Data from the Promise', () => {
       promise.resolves({ body: 'json' });
       const artists = search('Drake', 'artist');
-
       expect(artists.resolveValue).to.be.eql({ body: 'json' });
     });
   });
